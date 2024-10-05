@@ -1,6 +1,5 @@
 # Application
 
-[![Version](https://img.shields.io/github/v/release/tibia-oce/migrate)](https://github.com/tibia-oce/migrate/releases/latest)
 [![Go](https://img.shields.io/github/go-mod/go-version/tibia-oce/migrate)](https://golang.org/doc/go1.16)
 ![GitHub repo size](https://img.shields.io/github/repo-size/tibia-oce/migrate)
 
@@ -10,7 +9,7 @@
 
 ## Project
 
-Describe your project **HERE**
+Batch job container for managing BlackTek server and MyAAC MariaDB migrations, as part of the [GitOps workflow with Flux](https://github.com/tibia-oce/oci/tree/main/kubernetes/apps/mariadb).
 
 ## Builds
 | Platform       | Build        |
