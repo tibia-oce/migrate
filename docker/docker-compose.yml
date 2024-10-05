@@ -1,14 +1,45 @@
 version: "3.3"
 
 services:
+
+  database:
+    container_name: database
+    image: mariadb:latest
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    volumes:
+      - 'database:/var/lib/mysql'
+      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    env_file:
+      - '../.env'
+    networks:
+      - database
+
   application:
+    container_name: application
     build:
-      context: ../.github
+      context: .
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - 80:80
-      - 9090:9090
-    environment:
-      - APP_HTTP_PORT=80
-      - APP_GRPC_PORT=9090
+    env_file:
+      - '../.env'
+    networks:
+      - tibia
+    depends_on:
+      - database
+
+volumes:
+  database:
+
+networks:
+  database:
+    driver: bridge

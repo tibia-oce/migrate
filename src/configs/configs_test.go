@@ -164,11 +164,11 @@ func TestGetGlobalConfigs(t *testing.T) {
 		name: "default global configs",
 		want: GlobalConfigs{
 			DBConfigs: DBConfigs{
-				Host: "127.0.0.1",
-				Name: "canary",
+				Host: "database",
+				Name: "forgottenserver",
 				Port: 3306,
-				User: "canary",
-				Pass: "canary",
+				User: "forgottenserver",
+				Pass: "forgottenserver",
 			},
 		},
 	}, {

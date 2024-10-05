@@ -99,11 +99,11 @@ func TestGetDBConfigs(t *testing.T) {
 	}{{
 		name: "Default DB Configs",
 		want: DBConfigs{
-			Host: "127.0.0.1",
+			Host: "database",
 			Port: 3306,
-			Name: "canary",
-			User: "canary",
-			Pass: "canary",
+			Name: "forgottenserver",
+			User: "forgottenserver",
+			Pass: "forgottenserver",
 		},
 	}}
 	for _, tt := range tests {

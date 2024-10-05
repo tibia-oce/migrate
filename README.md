@@ -23,10 +23,7 @@ Describe your project **HERE**
 
 ### Getting **Started**
 
-To run it, simply download the latest release and define your environment variables.
-You can set environment type as `dev` if you want to use a `.env` file (store it in the same folder of your app).
-
-You can also download our docker image and apply the environment variables to your container.
+To run it, simply download the latest release and define your environment variables in a '.env' file.
 
 **Enviroment Variables**
 
