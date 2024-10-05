@@ -52,7 +52,7 @@ jobs:
 
     - name: Build
       if: ${{ github.event_name == 'pull_request' }}
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v6
       with:
         file: docker/Dockerfile
         tags: ghcr.io/${{ github.repository }}:${{ steps.gitversion.outputs.semVer }}
@@ -62,7 +62,7 @@ jobs:
     - name: Build and push
       id: docker_build
       if: ${{ github.event_name == 'push' }}
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v6
       with:
         file: docker/Dockerfile
         push: true
