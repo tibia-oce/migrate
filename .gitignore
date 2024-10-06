@@ -6,3 +6,9 @@ bin
 vendor
 .vscode
 .env
+
+# Python
+.venv/
+
+# MacOS
+.DS_Store

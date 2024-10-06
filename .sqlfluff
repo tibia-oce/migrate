@@ -1,0 +1,23 @@
+[sqlfluff]
+dialect = mariadb
+exclude_rules = L003, L009, LT05
+large_file_skip_byte_limit = 600000
+max_line_length = 120
+
+[sqlfluff:rules:convention.quoted_literals]
+preferred_quote = 'single'
+
+[sqlfluff:rules:layout.long_lines]
+max_line_length = 120
+
+[sqlfluff:rules:layout.spacing]
+require_whitespace_after_operator = True
+
+[sqlfluff:rules:layout.start_of_file]
+no_leading_newlines = True
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
+
+[sqlfluff:rules:capitalisation.types]
+capitalisation_policy = lower
