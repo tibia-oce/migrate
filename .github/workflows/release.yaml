@@ -35,6 +35,7 @@ jobs:
       uses: docker/setup-buildx-action@v3
       with:
         install: true
+        driver-opts: image=moby/buildkit:master
 
     - name: Cache Docker layers
       uses: actions/cache@v4
@@ -56,9 +57,11 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         file: docker/Dockerfile
+        platforms: linux/amd64,linux/arm64
+        push: false
         tags: ghcr.io/${{ github.repository }}:${{ steps.gitversion.outputs.semVer }}
         cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local,dest=/tmp/.buildx-cache-new
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
     - name: Build and push
       id: docker_build
@@ -66,16 +69,20 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         file: docker/Dockerfile
+        platforms: linux/amd64,linux/arm64
         push: true
-        tags: ghcr.io/${{ github.repository }}:${{ steps.gitversion.outputs.semVer }}
+        tags: |
+          ghcr.io/${{ github.repository }}:${{ steps.gitversion.outputs.semVer }}
+          ghcr.io/${{ github.repository }}:latest
         cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local,dest=/tmp/.buildx-cache-new
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
     - name: Image digest
       if: ${{ github.event_name == 'push' }}
       run: echo ${{ steps.docker_build.outputs.digest }}
 
     - name: Move cache
+      if: always()
       run: |
         rm -rf /tmp/.buildx-cache
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache

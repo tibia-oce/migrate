@@ -1,12 +1,15 @@
-# Stage 1: Download all dependencies
-FROM golang:1.23.2-alpine as builder
+# Stage 1: Build the application
+FROM --platform=$BUILDPLATFORM golang:1.23.2-alpine as builder
 
-WORKDIR /usr/local/go/src/github.com/tibia-oce/migrate
+ARG TARGETOS
+ARG TARGETARCH
+WORKDIR /app
+
 COPY go.mod .
 COPY go.sum .
 COPY src ./src
 
-RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o /bin/application ./src/
+RUN CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -ldflags "-s -w" -o /bin/application ./src/
 
 FROM alpine:latest
 COPY migrations /migrations
