@@ -9,8 +9,7 @@ COPY src ./src
 RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o /bin/application ./src/
 
 FROM alpine:latest
-
-# Copy our static executable.
+COPY migrations /migrations
 COPY --from=builder /bin/application /bin/application
 
 ENTRYPOINT ["/bin/application"]

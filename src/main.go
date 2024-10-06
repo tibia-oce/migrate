@@ -1,13 +1,13 @@
 package main
 
 import (
-	"time"
+	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4/database/mysql"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 
 	"github.com/tibia-oce/migrate/src/configs"
 	"github.com/tibia-oce/migrate/src/logger"
 )
-
-var initDelay = 200
 
 func main() {
 	logger.Info("Loading configurations...")
@@ -18,6 +18,16 @@ func main() {
 	}
 
 	gConfigs := configs.GetGlobalConfigs()
-	time.Sleep(time.Duration(initDelay) * time.Millisecond)
 	gConfigs.Display()
+
+	connectionString := gConfigs.DBConfigs.GetConnectionString()
+	m, err := migrate.New("file://migrations", "mysql://"+connectionString)
+	if err != nil {
+		logger.Panic(err)
+	}
+	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
+		logger.Panic(err)
+	}
+
+	logger.Info("Migrations applied successfully!")
 }

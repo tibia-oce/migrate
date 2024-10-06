@@ -16,7 +16,6 @@ type GlobalConfigs struct {
 	DBConfigs DBConfigs
 }
 
-// Init only works for variables that are not yet defined. /*
 func Init() error {
 	return godotenv.Load(".env")
 }

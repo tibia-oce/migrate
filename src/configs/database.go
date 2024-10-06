@@ -5,11 +5,11 @@ import (
 )
 
 const (
-	EnvDBHostKey = "MYSQL_HOST"
-	EnvDBNameKey = "MYSQL_DBNAME"
-	EnvDBPassKey = "MYSQL_PASS"
-	EnvDBPortKey = "MYSQL_PORT"
-	EnvDBUserKey = "MYSQL_USER"
+	EnvDBHostKey = "MARIADB_HOST"
+	EnvDBNameKey = "MARIADB_DATABASE"
+	EnvDBPassKey = "MARIADB_ROOT_PASSWORD"
+	EnvDBPortKey = "MARIADB_PORT"
+	EnvDBUserKey = "MARIADB_USERNAME"
 )
 
 type DBConfigs struct {
