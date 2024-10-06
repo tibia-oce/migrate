@@ -33,7 +33,6 @@ To run it, simply download the latest release and define your environment variab
 |`MARIADB_PORT`         | `database port`                      |
 |`MARIADB_ROOT_PASSWORD`         | `database password`                  |
 |`MARIADB_USERNAME`         | `database username`                  |
-|`ENV_LOG_LEVEL`      | `logrus log level for verbose` [ref](https://pkg.go.dev/github.com/sirupsen/logrus#Level)   |
 
 **Tests**  
 `go test ./tests -v`
@@ -42,44 +41,8 @@ To run it, simply download the latest release and define your environment variab
 `go build -o TARGET_NAME ./src/`
 
 ## Docker
-`docker pull tibia-oce/migrate:latest`<br><br>
+`docker pull ghcr.io/tibia-oce/migrate:latest`<br><br>
 [![Automation](https://img.shields.io/docker/cloud/automated/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate)
 [![Image Size](https://img.shields.io/docker/image-size/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate/tags?page=1&ordering=last_updated)
 ![Pulls](https://img.shields.io/docker/pulls/tibia-oce/migrate)
 [![Build](https://img.shields.io/docker/cloud/build/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate/builds)
-
-```
-migrate
-├─ .gitignore
-├─ Makefile
-├─ README.md
-├─ docker
-│  ├─ Dockerfile
-│  └─ docker-compose.yml
-├─ go.mod
-├─ go.sum
-├─ renovate.json
-├─ src
-│  ├─ configs
-│  │  ├─ configs.go
-│  │  ├─ configs_test.go
-│  │  ├─ database.go
-│  │  └─ database_test.go
-│  ├─ database
-│  │  └─ connector.go
-│  ├─ logger
-│  │  └─ logger.go
-│  ├─ main.go
-│  └─ migrations
-│     ├─ 1_forgottenserver_db.down.sql
-│     ├─ 1_forgottenserver_db.up.sql
-│     ├─ 2_account_table.down.sql
-│     ├─ 2_account_table.up.sql
-│     ├─ 3_initial_accounts.down.sql
-│     └─ 3_initial_accounts.up.sql
-└─ tmp
-   ├─ 3_tfs_schema.down.sql
-   ├─ 3_tfs_schema.up.sql
-   └─ txt
-
-```
