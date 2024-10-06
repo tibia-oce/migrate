@@ -1,0 +1,45 @@
+INSERT INTO `myaac_news` (
+    `id`,
+    `title`,
+    `body`,
+    `type`,
+    `date`,
+    `category`,
+    `player_id`,
+    `last_modified_by`,
+    `last_modified_date`,
+    `comments`,
+    `article_text`,
+    `article_image`,
+    `hidden`
+) VALUES
+(
+    1,
+    'Hello!',
+    'MyAAC is just READY to use!',
+    1,
+    1724827006,
+    2,
+    7,
+    0,
+    0,
+    'https://my-aac.org',
+    '',
+    '',
+    0
+),
+(
+    2,
+    'Hello tickets!',
+    'https://my-aac.org',
+    2,
+    1724827006,
+    4,
+    7,
+    0,
+    0,
+    '',
+    '',
+    '',
+    0
+);
