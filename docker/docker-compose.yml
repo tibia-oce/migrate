@@ -17,8 +17,6 @@ services:
       - '../.env'
     networks:
       - database
-    volumes:
-      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
 
   check-db-started:
     image: jwilder/dockerize:0.6.1    

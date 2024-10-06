@@ -6,6 +6,7 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 
 	"github.com/tibia-oce/migrate/src/configs"
+	"github.com/tibia-oce/migrate/src/database"
 	"github.com/tibia-oce/migrate/src/logger"
 )
 
@@ -20,6 +21,13 @@ func main() {
 	gConfigs := configs.GetGlobalConfigs()
 	gConfigs.Display()
 
+	// Create database if it doesn't exist
+	err = database.CreateDatabaseIfNotExists(gConfigs.DBConfigs)
+	if err != nil {
+		logger.Panic(err)
+	}
+
+	// Migrate the schema
 	connectionString := gConfigs.DBConfigs.GetConnectionString()
 	m, err := migrate.New("file://migrations", "mysql://"+connectionString)
 	if err != nil {
