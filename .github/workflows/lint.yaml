@@ -8,7 +8,7 @@ on:
     - main
 
 jobs:
-  job:
+  go:
     name: Golang Lint
     runs-on: ubuntu-latest
     strategy:
@@ -23,3 +23,25 @@ jobs:
       uses: golangci/golangci-lint-action@v6
       with:
         version: latest
+
+  sql:
+    name: SQL Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+
+      - name: Run SQL lint
+        run: |
+          .venv/bin/sqlfluff lint migrations/*.sql
