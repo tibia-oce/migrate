@@ -260,3 +260,22 @@ CREATE TABLE `myaac_weapons`
 	`vocations` VARCHAR(100) NOT NULL DEFAULT '',
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE `z_polls` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `question` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(255) NOT NULL,
+  `end` INT(11) NOT NULL DEFAULT 0,
+  `start` INT(11) NOT NULL DEFAULT 0,
+  `answers` INT(11) NOT NULL DEFAULT 0,
+  `votes_all` INT(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+
+
+CREATE TABLE `z_polls_answers` (
+  `poll_id` INT(11) NOT NULL,
+  `answer_id` INT(11) NOT NULL,
+  `answer` VARCHAR(255) NOT NULL,
+  `votes` INT(11) NOT NULL DEFAULT 0
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
