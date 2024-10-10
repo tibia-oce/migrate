@@ -58,6 +58,19 @@ services:
       check-db-started:
         condition: service_completed_successfully
 
+  website:
+    container_name: website
+    image: ghcr.io/tibia-oce/website:0.8.19
+    restart: unless-stopped
+    env_file:
+      - '../.env'
+    networks:
+      - database
+    depends_on:
+      - application
+    ports:
+      - 5002:80
+
 volumes:
   database:
 
