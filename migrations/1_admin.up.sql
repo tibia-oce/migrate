@@ -1,1 +1,5 @@
 -- Create database forgottenserver
+-- todo: use env vars for these values
+-- Create MyAAC user and permissions
+-- CREATE USER 'forgottenserver'@'localhost' IDENTIFIED BY 'password';
+-- GRANT ALL PRIVILEGES ON `forgottenserver`.* TO 'forgottenserver'@'localhost';
