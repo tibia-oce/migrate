@@ -1,6 +1,6 @@
 [sqlfluff]
 dialect = mariadb
-exclude_rules = L003, L009, LT05
+exclude_rules = L003, L009, LT05, RF04
 large_file_skip_byte_limit = 600000
 max_line_length = 120
 
