@@ -25,4 +25,5 @@ jobs:
       - name: Lint commit messages
         run: |
           RANGE=$((COMMIT_COUNT < 20 ? COMMIT_COUNT : 20))
-          npx --prefix .github/semantic-release commitlint --from=HEAD~${RANGE} --to=HEAD
+          npx --prefix .github/semantic-release commitlint --config .github/semantic-release/commitlint.config.js --from=HEAD~${RANGE} --to=HEAD
+      
