@@ -156,11 +156,11 @@ jobs:
         run: |
           IMAGE_TAGS="ghcr.io/${{ github.repository }}:${{ needs.release.outputs.release-version }}"
           if [ "${{ needs.release.outputs.is-prerelease }}" = "true" ]; then
-            IMAGE_TAGS="$IMAGE_TAGS\nghcr.io/${{ github.repository }}:rc"
+            IMAGE_TAGS="$IMAGE_TAGS,ghcr.io/${{ github.repository }}:rc"
           else
-            IMAGE_TAGS="$IMAGE_TAGS\nghcr.io/${{ github.repository }}:latest"
+            IMAGE_TAGS="$IMAGE_TAGS,ghcr.io/${{ github.repository }}:latest"
           fi
-          echo -e "IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_OUTPUT
+          echo "IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_OUTPUT
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
