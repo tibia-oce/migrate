@@ -14,11 +14,11 @@ Batch job container for managing BlackTek server and MyAAC MariaDB migrations, a
 ## Builds
 | Platform       | Build        |
 | :------------- | :----------: |
-| MacOS          | [![MacOS Build](https://github.com/tibia-oce/migrate/actions/workflows/ci-build-macos.yml/badge.svg?branch=main)](https://github.com/tibia-oce/migrate/actions/workflows/ci-build-macos.yml)   |
-| Ubuntu         | [![Ubuntu Build](https://github.com/tibia-oce/migrate/actions/workflows/ci-build-ubuntu.yml/badge.svg?branch=main)](https://github.com/tibia-oce/migrate/actions/workflows/ci-build-ubuntu.yml) |
-| Windows        | [![Windows Build](https://github.com/tibia-oce/migrate/actions/workflows/ci-build-windows.yml/badge.svg?branch=main)](https://github.com/tibia-oce/migrate/actions/workflows/ci-build-windows.yml) |
+| MacOS          | - |
+| Ubuntu         | [![Ubuntu Build](https://github.com/tibia-oce/migrate/actions/workflows/build-release.yaml/badge.svg?branch=main)](https://github.com/tibia-oce/migrate/actions/workflows/build-release.yaml) |
+| Windows        | [![Windows Build](https://github.com/tibia-oce/migrate/actions/workflows/build-release.yaml.yml/badge.svg?branch=main)](https://github.com/tibia-oce/migrate/actions/workflows/build-release.yaml.yml) |
 
-[![Workflow](https://github.com/tibia-oce/migrate/actions/workflows/ci-multiplat-release.yml/badge.svg)](https://github.com/tibia-oce/migrate/actions/workflows/ci-multiplat-release.yml)
+[![Workflow](https://github.com/tibia-oce/migrate/actions/workflows/build-release.yaml/badge.svg)](https://github.com/tibia-oce/migrate/actions/workflows/build-release.yaml)
 
 ### Getting **Started**
 
@@ -28,7 +28,7 @@ To run it, simply download the latest release and define your environment variab
 
 |       NAME          |            HOW TO USE                |
 | :------------------ | :----------------------------------  |
-|`MARIADB_DATABASE`       | `database default database name`     |
+|`MARIADB_DATABASE`       | `database name`     |
 |`MARIADB_HOST`         | `database host`                      |
 |`MARIADB_PORT`         | `database port`                      |
 |`MARIADB_ROOT_PASSWORD`         | `database password`                  |
@@ -41,8 +41,4 @@ To run it, simply download the latest release and define your environment variab
 `go build -o TARGET_NAME ./src/`
 
 ## Docker
-`docker pull ghcr.io/tibia-oce/migrate:latest`<br><br>
-[![Automation](https://img.shields.io/docker/cloud/automated/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate)
-[![Image Size](https://img.shields.io/docker/image-size/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate/tags?page=1&ordering=last_updated)
-![Pulls](https://img.shields.io/docker/pulls/tibia-oce/migrate)
-[![Build](https://img.shields.io/docker/cloud/build/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate/builds)
+`docker pull ghcr.io/tibia-oce/migrate:latest`

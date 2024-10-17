@@ -1,4 +1,4 @@
-name: Test
+name: Code Testing
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
     - master
 
 jobs:
-  job:
+  go:
     name: Run Golang Tests
     runs-on: ubuntu-latest
 
