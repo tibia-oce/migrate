@@ -126,27 +126,32 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [build, release]
-  
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-  
+
       - name: Download Built OCI Image
         uses: actions/download-artifact@v3
         with:
           name: myimage
           path: /tmp
-  
-      - name: Install Crane
-        uses: imjasonh/setup-crane@v0.1
-  
-      - name: Authenticate Crane for GitHub Container Registry
+
+      - name: Install Skopeo
         run: |
-          echo "${{ secrets.GHCR_TOKEN }}" | crane auth login ghcr.io --username ${{ github.actor }} --password-stdin
-  
-      - name: Push OCI Image to Registry
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+
+      - name: Push OCI Image to Registry with Skopeo
         run: |
-          crane push /tmp/myimage.tar ghcr.io/${{ github.repository }}:${{ needs.release.outputs.release-version }}
-          crane push /tmp/myimage.tar ghcr.io/${{ github.repository }}:latest
+          skopeo copy oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:${{ needs.release.outputs.release-version }}
+          skopeo copy oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:latest
+
+      - name: Login to GitHub Container Registry (Optional)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
