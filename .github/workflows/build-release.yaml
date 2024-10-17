@@ -90,18 +90,18 @@ jobs:
         run: npx semantic-release --ci
 
       # https://semantic-release.gitbook.io/semantic-release/usage/workflow-configuration#pre-release-branches
-      # Semantic-release appends a numerical suffix to all pre-releases by default (e.g., `v0.0.1-alpha.1`).
+      # Semantic-release appends a numerical suffix to all pre-releases by default (e.g., `v0.0.1-rc.1`).
       # Currently, this behavior is not configurable via CLI or the release config. For improved readability 
       # and consistency, this step renames the tag and associated release by removing the numerical suffix
-      # from the alpha pre-release (e.g., renaming `v0.0.1-alpha.1` to `v0.0.1-alpha`).
+      # from the alpha pre-release (e.g., renaming `v0.0.1-rc.1` to `v0.0.1-rc`).
       - name: Rename Alpha Release Tag (Develop Branch Only)
         if: github.ref == 'refs/heads/develop'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           latest_tag=$(gh release list --limit 1 --json tagName,isPrerelease --jq '.[] | select(.isPrerelease) | .tagName')
-          if [[ $latest_tag == *"-alpha."* ]]; then
-            new_tag=${latest_tag%-alpha.*}-alpha
+          if [[ $latest_tag == *"-rc."* ]]; then
+            new_tag=${latest_tag%-rc.*}-rc
             new_name="Release ${new_tag}"
             gh release edit "$latest_tag" --tag "$new_tag" --title "$new_name"
             git tag $new_tag $latest_tag  # Create the new tag pointing to the same commit
