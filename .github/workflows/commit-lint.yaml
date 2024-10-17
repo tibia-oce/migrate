@@ -1,4 +1,4 @@
-name: Commit Lint
+name: Commit Linting
 
 on:
   workflow_dispatch:
