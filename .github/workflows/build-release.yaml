@@ -157,15 +157,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
   
-      - name: Push Docker image with version
-        uses: docker/build-push-action@v6
-        with:
-          file: docker/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ env.RELEASE_VERSION }}
-            ghcr.io/${{ github.repository }}:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      - name: Pull the temporary image
+        run: |
+          docker pull ghcr.io/${{ github.repository }}:temp
   
+      - name: Tag the image with the release version
+        run: |
+          docker tag ghcr.io/${{ github.repository }}:temp ghcr.io/${{ github.repository }}:${{ env.RELEASE_VERSION }}
+          docker tag ghcr.io/${{ github.repository }}:temp ghcr.io/${{ github.repository }}:latest
+  
+      - name: Push Docker image with version
+        run: |
+          docker push ghcr.io/${{ github.repository }}:${{ env.RELEASE_VERSION }}
+          docker push ghcr.io/${{ github.repository }}:latest
