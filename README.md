@@ -41,8 +41,4 @@ To run it, simply download the latest release and define your environment variab
 `go build -o TARGET_NAME ./src/`
 
 ## Docker
-`docker pull ghcr.io/tibia-oce/migrate:latest`<br><br>
-[![Automation](https://img.shields.io/docker/cloud/automated/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate)
-[![Image Size](https://img.shields.io/docker/image-size/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate/tags?page=1&ordering=last_updated)
-![Pulls](https://img.shields.io/docker/pulls/tibia-oce/migrate)
-[![Build](https://img.shields.io/docker/cloud/build/tibia-oce/migrate)](https://hub.docker.com/r/tibia-oce/migrate/builds)
+`docker pull ghcr.io/tibia-oce/migrate:latest`
