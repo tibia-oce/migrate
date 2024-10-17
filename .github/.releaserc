@@ -6,21 +6,13 @@
   "tagFormat": "v${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
+    "@semantic-release/github",
     [
       "@semantic-release/release-notes-generator",
       {
         "writerOpts": {
           "headerPartial": ""
         }
-      }
-    ],
-    [
-      "@semantic-release/github",
-      {
-        "assets": [
-          { "path": "bin/build/linux/Mythbound", "name": "Mythbound", "label": "Mythbound (Linux)" },
-          { "path": "bin/build/windows/Mythbound.exe", "name": "Mythbound.exe", "label": "Mythbound.exe (Windows)" }
-        ]
       }
     ]
   ]
