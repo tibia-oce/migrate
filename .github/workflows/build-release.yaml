@@ -54,8 +54,8 @@ jobs:
           npm install conventional-changelog-eslint --save-dev
 
       # https://github.com/semantic-release/semantic-release/issues/1592#issuecomment-902533435
-      # Semantic-release doesn't support pathing to a config file unless using a .js config:
-      # instead copy the file to the root as a workaround to maintain workflow separation
+      # Semantic-release doesn't support pathing to a config file unless using a .js config,
+      # instead copy the file to the root as a workaround to maintain workflow separation.
       - name: Copy Release Config to Root
         run: |
           cp .github/.releaserc ./
