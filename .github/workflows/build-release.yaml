@@ -147,6 +147,4 @@ jobs:
       - name: Push OCI Image to Registry with Skopeo
         run: |
           skopeo copy --dest-creds ${{ github.actor }}:${{ secrets.GHCR_TOKEN }} \
-            oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:${{ needs.release.outputs.release-version }}
-          skopeo copy --dest-creds ${{ github.actor }}:${{ secrets.GHCR_TOKEN }} \
             oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:latest
