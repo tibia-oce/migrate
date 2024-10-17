@@ -139,14 +139,14 @@ jobs:
           name: myimage
           path: /tmp
 
-      - name: Set up Skopeo
-        uses: warjiang/setup-skopeo@latest
-        with:
-          version: latest
+      - name: Install Skopeo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
 
       - name: Push OCI Image to Registry with Skopeo
-        run: |
-          skopeo copy --dest-creds ${{ github.actor }}:${{ secrets.GHCR_TOKEN }} \
-            oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:${{ needs.release.outputs.release-version }}
-          skopeo copy --dest-creds ${{ github.actor }}:${{ secrets.GHCR_TOKEN }} \
-            oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:latest
+      run: |
+        skopeo copy --dest-creds ${{ github.actor }}:${{ secrets.GHCR_TOKEN }} \
+          oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:${{ needs.release.outputs.release-version }}
+        skopeo copy --dest-creds ${{ github.actor }}:${{ secrets.GHCR_TOKEN }} \
+          oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:latest
