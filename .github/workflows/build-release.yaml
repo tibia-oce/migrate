@@ -145,12 +145,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      # Determine Docker image tags based on the release type:
-      # - Always tag the image with the specific release version (e.g., ghcr.io/user/repo:v1.0.0).
-      # - If the release is a pre-release (e.g., an alpha or beta version), add an 'rc' tag to mark it as a release candidate.
-      #   This 'rc' tag always points to the latest pre-release image.
-      # - If the release is a stable release, add the 'latest' tag to denote the most recent stable version.
-      #   The 'latest' tag always points to the latest stable release image.
+      # Build a comma-separated list of tags.. Always tag the image with the specific release
+      # version (e.g., ghcr.io/xx/xx:v1.0.0). If the release is a pre-release (e.g.: alpha),
+      # add an 'rc' tag to mark it as a release candidate. If the release is a stable release, add
+      # the 'latest' tag to denote the most recent stable version.
       - name: Set Image Tags
         id: set_tags
         run: |
