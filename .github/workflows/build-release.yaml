@@ -24,13 +24,13 @@ jobs:
     # Use the OCI format (type=oci) instead of Docker format (type=docker) because
     # the Docker exporter does not support exporting manifest lists, which are required
     # for multi-platform builds (e.g., amd64, arm64).
-    - name: Build and Export Image
+    - name: Build and Export Image as OCI
       uses: docker/build-push-action@v6
       with:
         file: docker/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: false
-        outputs: type=oci,dest=/tmp/myimage.tar
+        outputs: type=oci,dest=/tmp/myimage
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -38,7 +38,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: myimage
-        path: /tmp/myimage.tar
+        path: /tmp/myimage
 
   release:
     runs-on: ubuntu-latest
@@ -148,3 +148,5 @@ jobs:
         run: |
           skopeo copy --dest-creds ${{ github.actor }}:${{ secrets.GHCR_TOKEN }} \
             oci:/tmp/myimage:latest docker://ghcr.io/${{ github.repository }}:latest
+
+          
