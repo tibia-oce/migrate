@@ -1,6 +1,9 @@
 VENV_DIR = .venv
 REQ_FILE = requirements.txt
 
+env:
+	@if [ ! -f .env ]; then cp .env.example .env; else echo ".env already exists. Skipping."; fi
+
 build:
 	go build -o ./bin/migrate ./src/main.go
 
@@ -14,7 +17,7 @@ clean:
 	rm -rf ./bin
 	@rm -rf $(VENV_DIR)
 
-compose:
+compose: env
 	docker-compose -f docker/docker-compose.yml down --volumes
 	docker-compose -f docker/docker-compose.yml up --build
 
