@@ -1,6 +1,10 @@
 VENV_DIR = .venv
 REQ_FILE = requirements.txt
 
+compose: env
+	docker-compose -f docker/docker-compose.yml down --volumes
+	docker-compose -f docker/docker-compose.yml up --build
+
 env:
 	@if [ ! -f .env ]; then cp .env.example .env; else echo ".env already exists. Skipping."; fi
 
@@ -16,10 +20,6 @@ test:
 clean:
 	rm -rf ./bin
 	@rm -rf $(VENV_DIR)
-
-compose: env
-	docker-compose -f docker/docker-compose.yml down --volumes
-	docker-compose -f docker/docker-compose.yml up --build
 
 venv:
 	@-python3 -m venv $(VENV_DIR)
