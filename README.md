@@ -40,5 +40,13 @@ To run it, simply download the latest release and define your environment variab
 **Build**  
 `go build -o TARGET_NAME ./src/`
 
+**Linting**  
+```sh
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+sqlfluff fix migrations/*.sql
+```
+
 ## Docker
 `docker pull ghcr.io/tibia-oce/migrate:latest`
